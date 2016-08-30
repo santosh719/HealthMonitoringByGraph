@@ -13,10 +13,10 @@ public class Patient {
     private String Name;
     private Boolean Sex;
     private int LengthOfData;
-    private Float[] Data;
+    private float[] Data;
 
     //complete explicit constructor
-    public Patient(int id,double age, String name,Boolean sex,Float[] data, int length){
+    public Patient(int id, double age, String name, Boolean sex, float[] data, int length){
         this.id = id;
         this.Age = age;
         this.Name = name;
@@ -25,7 +25,7 @@ public class Patient {
         this.LengthOfData = length;
     }
     //for case with only length in dataset
-    public Patient(int id,double age, String name,Boolean sex, int length){
+    public Patient(int id, double age, String name, Boolean sex, int length){
         this.id = id;
         this.Age = age;
         this.Name = name;
@@ -33,7 +33,7 @@ public class Patient {
         this.LengthOfData = length;
         this.Data = this.genRandomData(length);
     }
-    public Patient(int id,double age, String name,Boolean sex){
+    public Patient(int id, double age, String name, Boolean sex){
         this.id = id;
         this.Age = age;
         this.Name = name;
@@ -42,14 +42,14 @@ public class Patient {
         this.LengthOfData = 25;
 
     }
-    public Float[] getPatientData() {
+    public float[] getPatientData() {
         return (this.Data);
     }
     public void setPatientData(int len){
         this.Data = this.genRandomData(len);
     }
-    private Float[] genRandomData(int len){
-        Float[] results = new Float[len];
+    private float[] genRandomData(int len){
+        float[] results = new float[len];
         Random keeper = new Random();
         for (int i = 0; i < len; i++){
             results[i] = keeper.nextFloat();
