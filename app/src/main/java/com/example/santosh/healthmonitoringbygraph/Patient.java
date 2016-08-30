@@ -16,7 +16,10 @@ public class Patient {
     private float[] Data;
 
     //complete explicit constructor
-    public Patient(int id,double age, String name,Boolean sex,float[] data, int length){
+
+
+    public Patient(int id, double age, String name, Boolean sex, float[] data, int length){
+
         this.id = id;
         this.Age = age;
         this.Name = name;
@@ -25,7 +28,7 @@ public class Patient {
         this.LengthOfData = length;
     }
     //for case with only length in dataset
-    public Patient(int id,double age, String name,Boolean sex, int length){
+    public Patient(int id, double age, String name, Boolean sex, int length){
         this.id = id;
         this.Age = age;
         this.Name = name;
@@ -33,7 +36,7 @@ public class Patient {
         this.LengthOfData = length;
         this.Data = this.genRandomData(length);
     }
-    public Patient(int id,double age, String name,Boolean sex){
+    public Patient(int id, double age, String name, Boolean sex){
         this.id = id;
         this.Age = age;
         this.Name = name;

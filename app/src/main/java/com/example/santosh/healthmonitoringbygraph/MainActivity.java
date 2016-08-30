@@ -1,6 +1,7 @@
 package com.example.santosh.healthmonitoringbygraph;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,8 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Button;
 import android.os.Handler;
 import android.widget.Toast;
-import android.widget.TextView;
-import java.util.ArrayList;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(MY_TAG, "Chal chutiye");
                 graph.setValues(f);
 //                 Redraw the graph
-               graph.invalidate();
+
+                graph.invalidate();
+
 
 
 //                Toast startToast = Toast.makeText(getBaseContext(), "Timer Up", Toast.LENGTH_LONG);
@@ -112,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }
 
