@@ -30,6 +30,7 @@ public class GraphView extends View {
 
     public GraphView(Context context, float[] values, String title, String[] horlabels, String[] verlabels, boolean type) {
         super(context);
+
         if (values == null)
             values = new float[0];
         else
@@ -56,6 +57,7 @@ public class GraphView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+
         float border = 20;
         float horstart = border * 2;
         float height = getHeight();
@@ -68,6 +70,10 @@ public class GraphView extends View {
 
 
         paint.setTextAlign(Paint.Align.LEFT);
+
+        //changed here
+        paint.setTextSize(40);
+
         int vers = verlabels.length - 1;
         for (int i = 0; i < verlabels.length; i++) {
             paint.setColor(Color.DKGRAY);
@@ -94,7 +100,7 @@ public class GraphView extends View {
         canvas.drawText(title, (graphwidth / 2) + horstart, border - 4, paint);
 
         if (max != min) {
-            paint.setColor(Color.LTGRAY);
+            paint.setColor(Color.parseColor("#f7f7f7"));
             if (type == BAR) {
                 float datalength = values.length;
                 float colwidth = (width - (2 * border)) / datalength;
@@ -114,7 +120,7 @@ public class GraphView extends View {
                     float rat = val / diff;
                     float h = graphheight * rat;
                     if (i > 0)
-                        paint.setColor(Color.GREEN);
+                        paint.setColor(Color.parseColor("#f7f7f7"));
                     paint.setStrokeWidth(2.0f);
 
                     canvas.drawLine(((i - 1) * colwidth) + (horstart + 1) + halfcol, (border - lasth) + graphheight, (i * colwidth) + (horstart + 1) + halfcol, (border - h) + graphheight, paint);

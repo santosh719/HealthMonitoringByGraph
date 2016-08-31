@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Button;
 import android.widget.Toast;
-
+import android.graphics.Color;
 
 public class MainActivity extends AppCompatActivity {
     public RelativeLayout baselayout;
@@ -25,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
         float[] sample = new float[]{1, 2, 5, 7, 6};
         String[] hlabel = new String[]{"X", "1","2","3"};
         String[] vlabel = new String[]{"Y", "10","20","30"};
+
         final String MY_TAG = "debugging";
+
         final Patient p = new Patient(1, 11, "Momo", Patient.MALE, 10);
-        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.BAR);
-        //final int count = 1;
+        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.LINE);
+
+        int graphId = graph.generateViewId();
+        graph.setBackgroundColor(Color.BLACK);
+
         final Handler timerHandler = new Handler();
         final Runnable timerRunnable = new Runnable() {
             @Override
@@ -50,13 +55,21 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //baseLayout.addView(graph);
-        ViewGroup.LayoutParams graphRules = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams graphRules = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        ViewGroup.LayoutParams buttonRules = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        graphRules.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//        graph.setPadding(50, 50, 50, 50);
 
         graph.setLayoutParams(graphRules);
 
-
         Button start = new Button(this);
         Button stop = new Button(this);
+
+        int startId, stopId;
+        startId = start.generateViewId();
+        stopId = stop.generateViewId();
 
         start.setText("Start");
         stop.setText("Stop");
@@ -78,13 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
         //adding all views to layout
         RelativeLayout baseLayout = new RelativeLayout(this);
+
+//        baseLayout.setPadding(100, 100, 100, 100);
+//        baseLayout.setGravity(20);R
+        baseLayout.setBackgroundColor(Color.BLACK);
         baseLayout.addView(graph);
-        baseLayout.addView(start, graphRules);
-        //baseLayout.addView(stop, graphRules);
+        baseLayout.addView(start, buttonRules);
+        //baseLayout.addView(stop, buttonRules);
         setContentView(baseLayout);
-
-
-
 
     }
 
