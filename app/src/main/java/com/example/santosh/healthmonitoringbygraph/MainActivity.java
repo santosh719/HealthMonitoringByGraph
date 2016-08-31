@@ -1,21 +1,26 @@
 package com.example.santosh.healthmonitoringbygraph;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.GridLayout.Spec;
 import android.widget.RelativeLayout;
 import android.widget.Button;
 import android.widget.Toast;
 import android.graphics.Color;
 
 public class MainActivity extends AppCompatActivity {
-    public RelativeLayout baselayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         float[] sample = new float[]{1, 2, 5, 7, 6};
         String[] hlabel = new String[]{"X", "1","2","3"};
         String[] vlabel = new String[]{"Y", "10","20","30"};
-
+        final boolean[] timerFlag = {false};
         final String MY_TAG = "debugging";
 
         final Patient p = new Patient(1, 11, "Momo", Patient.MALE, 10);
-        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.LINE);
+        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.BAR);
 
         int graphId = graph.generateViewId();
         graph.setBackgroundColor(Color.BLACK);
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         final Runnable timerRunnable = new Runnable() {
             @Override
             public void run() {
+                timerFlag[0] = true;
                 p.setPatientData(10);
                 float f[] = p.getPatientData();
                 Log.d(MY_TAG, "Chal chutiye");
@@ -55,17 +61,21 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //baseLayout.addView(graph);
-        RelativeLayout.LayoutParams graphRules = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        ViewGroup.LayoutParams buttonRules = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        graphRules.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//        RelativeLayout.LayoutParams graphRules = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        RelativeLayout.LayoutParams buttonRules = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        RelativeLayout.LayoutParams buttonRulesForStop = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//        graphRules.addRule(RelativeLayout.ALIGN_BOTTOM);
+//        buttonRules.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        buttonRulesForStop.addRule(RelativeLayout.CENTER_HORIZONTAL);
 //        graph.setPadding(50, 50, 50, 50);
 
-        graph.setLayoutParams(graphRules);
+
 
         Button start = new Button(this);
         Button stop = new Button(this);
+
+
 
         int startId, stopId;
         startId = start.generateViewId();
@@ -78,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 //Toast startToast = Toast.makeText(getApplicationContext(), "Start Pressed", Toast.LENGTH_LONG);
                 //startToast.show();
-                timerHandler.postDelayed(timerRunnable,0);
+                if (!timerFlag[0]) {
+                    timerHandler.postDelayed(timerRunnable, 0);
+                }
             }
         });
         stop.setOnClickListener(new View.OnClickListener(){
@@ -90,15 +102,42 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //adding all views to layout
-        RelativeLayout baseLayout = new RelativeLayout(this);
+        //RelativeLayout overallLayout = new RelativeLayout(this);
+
+        Spec row1 = GridLayout.spec(0);
+        Spec row2 = GridLayout.spec(1);
+
+
+        Spec col0 = GridLayout.spec(0);
+        Spec col1 = GridLayout.spec(1);
+
+
+        GridLayout lowerPartLayout = new GridLayout(this);
+        GridLayout.LayoutParams first = new GridLayout.LayoutParams(row2, col0);
+
+        GridLayout.LayoutParams second = new GridLayout.LayoutParams(row1, col0);
+        GridLayout.LayoutParams third = new GridLayout.LayoutParams(row1, col0);
 
 //        baseLayout.setPadding(100, 100, 100, 100);
 //        baseLayout.setGravity(20);R
-        baseLayout.setBackgroundColor(Color.BLACK);
-        baseLayout.addView(graph);
-        baseLayout.addView(start, buttonRules);
-        //baseLayout.addView(stop, buttonRules);
-        setContentView(baseLayout);
+
+        first.width = 1000;
+        first.height = 1500;
+        second.width = 300;
+        second.height = 150;
+        third.width = 300;
+        third.height = 150;
+
+        second.setGravity(Gravity.TOP);
+        second.setGravity(Gravity.LEFT);
+        third.setGravity(Gravity.TOP);
+        third.setGravity(Gravity.RIGHT);
+
+        lowerPartLayout.setBackgroundColor(Color.BLACK);
+        lowerPartLayout.addView(graph,first);
+        lowerPartLayout.addView(start, second);
+        lowerPartLayout.addView(stop, third);
+        setContentView(lowerPartLayout);
 
     }
 
