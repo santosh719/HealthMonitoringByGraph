@@ -79,7 +79,7 @@ public class GraphView extends View {
             paint.setColor(Color.DKGRAY);
             float y = ((graphheight / vers) * i) + border;
             canvas.drawLine(horstart, y, width, y, paint);
-            paint.setColor(Color.WHITE);
+            paint.setColor(Color.GREEN);
             canvas.drawText(verlabels[i], 0, y, paint);
         }
         int hors = horlabels.length - 1;

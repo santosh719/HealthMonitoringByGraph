@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         final String MY_TAG = "debugging";
 
         final Patient p = new Patient(1, 11, "Momo", Patient.MALE, 10);
-        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.BAR);
+        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.LINE);
 
         int graphId = graph.generateViewId();
         graph.setBackgroundColor(Color.BLACK);
@@ -97,7 +97,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 //Toast startToast = Toast.makeText(getApplicationContext(), "Stop Pressed", Toast.LENGTH_LONG);
                 //startToast.show();
+                timerFlag[0] = false;
                 timerHandler.removeCallbacks(timerRunnable);
+                float f1[] = {0,0};
+                graph.setValues(f1);
+//                 Redraw the graph
+                graph.invalidate();
+
             }
         });
 
