@@ -1,4 +1,4 @@
-package com.example.santosh.healthmonitoringbygraph;
+package com.example.mohseenmukaddam.healthmonitor;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,10 +11,8 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Button;
-import android.os.Handler;
 import android.widget.Toast;
 import android.graphics.Color;
-
 
 public class MainActivity extends AppCompatActivity {
     public RelativeLayout baselayout;
@@ -45,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(MY_TAG, "Chal chutiye");
                 graph.setValues(f);
 //                 Redraw the graph
-
                 graph.invalidate();
-
 
 
 //                Toast startToast = Toast.makeText(getBaseContext(), "Timer Up", Toast.LENGTH_LONG);
@@ -129,5 +125,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-}
 
+
+}

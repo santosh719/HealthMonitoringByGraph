@@ -1,4 +1,4 @@
-package com.example.santosh.healthmonitoringbygraph;
+package com.example.mohseenmukaddam.healthmonitor;
 
 import java.util.Random;
 /**
@@ -16,10 +16,7 @@ public class Patient {
     private float[] Data;
 
     //complete explicit constructor
-
-
     public Patient(int id, double age, String name, Boolean sex, float[] data, int length){
-
         this.id = id;
         this.Age = age;
         this.Name = name;
@@ -55,7 +52,7 @@ public class Patient {
         float[] results = new float[len];
         Random keeper = new Random();
         for (int i = 0; i < len; i++){
-            results[i] = (float)keeper.nextFloat();
+            results[i] = keeper.nextFloat();
         }
         return(results);
     }
