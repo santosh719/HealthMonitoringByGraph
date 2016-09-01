@@ -1,4 +1,4 @@
-package com.example.santosh.healthmonitoringbygraph;
+package com.example.mohseenmukaddam.healthmonitor;
 
 import java.util.Random;
 /**
