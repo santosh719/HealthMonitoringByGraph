@@ -1,4 +1,4 @@
-package com.example.mohseenmukaddam.healthmonitor;
+package com.example.santosh.healthmonitoringbygraph;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         final String MY_TAG = "debugging";
 
         final Patient p = new Patient(1, 11, "Momo", Patient.MALE, 10);
-        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.LINE);
+        final GraphView graph = new GraphView(this, sample, "Sample view", hlabel, vlabel, GraphView.BAR);
 
         int graphId = graph.generateViewId();
         graph.setBackgroundColor(Color.BLACK);
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 //                startToast.show();
 
                 // Repost the run method in the queue so that it can be called again after 100 ms
-                timerHandler.postDelayed(this, 1000);
+                timerHandler.postDelayed(this, 500);
             }
         };
 

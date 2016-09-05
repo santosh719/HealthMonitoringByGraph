@@ -1,4 +1,6 @@
-package com.example.mohseenmukaddam.healthmonitor;
+package com.example.santosh.healthmonitoringbygraph;
+
+import android.util.Log;
 
 import java.util.Random;
 /**
@@ -7,7 +9,7 @@ import java.util.Random;
 public class Patient {
     public static boolean MALE = true;
     public static boolean FEMALE = false;
-
+    final String TAG = "Santi";
     private int id;
     private double Age;
     private String Name;
@@ -46,7 +48,12 @@ public class Patient {
         return (this.Data);
     }
     public void setPatientData(int len){
-        this.Data = this.genRandomData(len);
+        for(int i = 0; i< (len-1);i++){
+            this.Data[i] = this.Data[i+1];
+        }
+        Random keeper = new Random();
+        Log.d(TAG, String.valueOf(keeper.nextFloat()));
+        this.Data[(len-1)] = keeper.nextFloat();
     }
     private float[] genRandomData(int len){
         float[] results = new float[len];

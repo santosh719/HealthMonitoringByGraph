@@ -1,4 +1,4 @@
-package com.example.mohseenmukaddam.healthmonitor;
+package com.example.santosh.healthmonitoringbygraph;
 
 import android.content.res.Resources;
 import android.util.TypedValue;
